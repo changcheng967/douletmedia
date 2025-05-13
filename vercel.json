@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "backend.js"
+    }
+  ],
+  "env": {
+    "SUPABASE_URL": "https://orpljgijsehehkbnfqpk.supabase.co",
+    "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ycGxqZ2lqc2VoZWhrYm5mcXBrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MTIxOTMxMiwiZXhwIjoyMDU2Nzk1MzEyfQ.cYD1OyDJHv5POvPfg6clh_1LGGcC6IFtqwZ-Fjc-4ts",
+    "JWT_SECRET": "FPHf5ek22qu1ygeJh1WM6qa481dEXv3qOtySTuvjUciTBpxnPjp/f91mmNB/M/X1fwtNuqOJ0hV7+6QvwBndLw=="
+  }
+}
