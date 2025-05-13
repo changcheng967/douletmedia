@@ -1,136 +1,1141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Doulet Media - Empowering businesses with innovative digital solutions, from AI tools to scalable chat servers.">
-    <meta name="keywords" content="Doulet Media, AI Solutions, Chat Server, Digital Marketing, Web Development">
-    <meta name="author" content="Doulet Media">
-    <title>Doulet Media - Innovative Solutions for the Digital Age</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doulet Media - About & Releases</title>
+  <!-- Google Font for a modern look -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-color: #ff6600;
+      --primary-dark: #e05500;
+      --dark-color: #222;
+      --light-color: #f5f7fa;
+      --text-color: #333;
+      --text-light: #777;
+      --white: #fff;
+      --shadow: 0 2px 4px rgba(0,0,0,0.1);
+      --border-radius: 5px;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--light-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Header */
+    header {
+      background-color: var(--dark-color);
+      color: var(--white);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    header h1 i {
+      color: var(--primary-color);
+    }
+    
+    nav a {
+      margin-right: 15px;
+      font-weight: 500;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--primary-color);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .auth-buttons button {
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      padding: 8px 15px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    
+    .auth-buttons button:hover {
+      background: var(--primary-dark);
+    }
+    
+    .auth-buttons button.secondary {
+      background: transparent;
+      border: 1px solid var(--white);
+    }
+    
+    .auth-buttons button.secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    #welcomeMessage {
+      margin-right: 10px;
+      font-weight: 500;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    
+    /* Sections */
+    section {
+      background: var(--white);
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+    
+    section:hover {
+      transform: translateY(-2px);
+    }
+    
+    section h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      border-bottom: 2px solid var(--dark-color);
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    section h2 i {
+      color: var(--primary-color);
+    }
+    
+    /* Posts (Announcements/ Releases) */
+    .post-list {
+      margin-top: 20px;
+    }
+    
+    .post-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      transition: background 0.3s;
+    }
+    
+    .post-item:hover {
+      background: rgba(0,0,0,0.02);
+    }
+    
+    .post-item:last-child {
+      border-bottom: none;
+    }
+    
+    .post-type {
+      display: inline-block;
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 3px 7px;
+      border-radius: var(--border-radius);
+      font-size: 0.8em;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .post-date {
+      font-size: 0.8em;
+      color: var(--text-light);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .post-title {
+      font-size: 1.2em;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: var(--dark-color);
+    }
+    
+    .post-content {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+    
+    /* Extra Release Fields styling (within post) */
+    .release-details {
+      font-size: 0.9em;
+      background: #e8f0fe;
+      padding: 12px;
+      border-radius: var(--border-radius);
+      margin-top: 12px;
+      border-left: 3px solid var(--primary-color);
+    }
+    
+    .release-details strong {
+      color: var(--dark-color);
+    }
+    
+    .release-details a {
+      color: var(--primary-color);
+      word-break: break-all;
+    }
+    
+    /* Admin Controls (visible only to logged in admin) */
+    .admin-controls {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      background: #f9f9f9;
+      border-left: 3px solid var(--primary-color);
+    }
+    
+    .admin-controls h3 {
+      margin-top: 0;
+      color: var(--dark-color);
+    }
+    
+    .admin-controls label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 500;
+    }
+    
+    .admin-controls input[type="text"],
+    .admin-controls textarea,
+    .admin-controls select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      font-size: 1em;
+      transition: border 0.3s;
+    }
+    
+    .admin-controls input[type="text"]:focus,
+    .admin-controls textarea:focus,
+    .admin-controls select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+    
+    .admin-controls button {
+      background: var(--dark-color);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    
+    .admin-controls button:hover {
+      background: #444;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark-color);
+      color: var(--white);
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+    }
+    
+    footer a {
+      color: var(--primary-color);
+      transition: color 0.3s;
+    }
+    
+    footer a:hover {
+      color: var(--primary-dark);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+    
+    .social-links a {
+      color: var(--white);
+      font-size: 1.5em;
+      transition: color 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    /* Modal Base Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+    
+    .modal-content {
+      background: var(--white);
+      margin: auto;
+      padding: 25px;
+      border-radius: var(--border-radius);
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: modalFadeIn 0.3s;
+    }
+    
+    @keyframes modalFadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    
+    .modal-content h3 {
+      margin-top: 0;
+      color: var(--dark-color);
+    }
+    
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    
+    .close:hover {
+      color: var(--dark-color);
+    }
+    
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      font-size: 1em;
+      transition: border 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+    
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+    /* Terms Modal */
+    .terms-content {
+      max-height: 400px;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 0.9em;
+      padding-right: 10px;
+    }
+    
+    .terms-content h4 {
+      margin-top: 20px;
+      color: var(--dark-color);
+    }
+    
+    .terms-content ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    
+    /* Loading Spinner */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: var(--white);
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      nav {
+        margin: 10px 0;
+      }
+      
+      .auth-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      section {
+        padding: 15px;
+      }
+    }
+    
+    /* Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--dark-color);
+      color: var(--white);
+      padding: 15px 25px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .toast.success {
+      background: #4CAF50;
+    }
+    
+    .toast.error {
+      background: #F44336;
+    }
+    
+    .toast i {
+      font-size: 1.2em;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <h1>Doulet Media</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2>Welcome to Doulet Media</h2>
-        <p>Empowering businesses with innovative solutions for a brighter digital future.</p>
-        <a href="#contact" class="btn">Get in Touch</a>
-    </section>
-
+  <!-- Header -->
+  <header>
+    <div>
+      <h1><i class="fas fa-robot"></i> Doulet Media</h1>
+    </div>
+    <nav>
+      <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#posts"><i class="fas fa-bullhorn"></i> Posts</a>
+      <a href="#" onclick="openTermsModal()"><i class="fas fa-file-contract"></i> Terms</a>
+    </nav>
+    <div class="auth-buttons">
+      <span id="welcomeMessage"></span>
+      <button id="loginBtn" onclick="openLoginModal()"><i class="fas fa-sign-in-alt"></i> Login</button>
+      <button id="registerBtn" onclick="openRegisterModal()" class="secondary"><i class="fas fa-user-plus"></i> Register</button>
+      <button id="logoutBtn" onclick="logout()" style="display:none;" class="secondary"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      <button id="newPostBtn" onclick="openNewPostModal()" style="display:none;"><i class="fas fa-plus"></i> New Post</button>
+    </div>
+  </header>
+  
+  <!-- Main Container -->
+  <div class="container">
     <!-- About Section -->
     <section id="about">
-        <h2>About Doulet Media</h2>
-        <p>Doulet Media is a technology-driven company focused on creating innovative, scalable, and user-centric digital solutions. Our team of experts brings together years of experience to empower businesses in achieving their goals through tailored technologies and creative strategies.</p>
-        <p>Whether you’re a startup or a large enterprise, we’re here to help you navigate the complexities of the digital world.</p>
-        <img src="about-us.jpg" alt="About Doulet Media" class="responsive">
+      <h2><i class="fas fa-info-circle"></i> About Us</h2>
+      <p>
+        Doulet Media is dedicated to engineering innovative Go AI and technology solutions.
+        We develop cutting-edge algorithms and code, making breakthroughs in competitive gaming and artificial intelligence.
+      </p>
+      <p>
+        Our team of experts combines deep knowledge of game theory with advanced machine learning techniques
+        to push the boundaries of what's possible in AI-assisted gameplay.
+      </p>
     </section>
-
-    <!-- Team Section -->
-    <section id="members">
-        <h2>Our Team</h2>
-        <p>We’re proud of our talented team that powers Doulet Media’s success:</p>
-        <div class="team">
-            <div class="team-member">
-                <h3>Changcheng967 (xqqzldh)</h3>
-                <p><strong>Role:</strong> Founder & CEO</p>
-                <p>Changcheng967 leads the team with a vision of innovation and a commitment to excellence.</p>
-            </div>
-            <div class="team-member">
-                <h3>CodeCrafter87 (cFx29)</h3>
-                <p><strong>Role:</strong> Lead Developer</p>
-                <p>An expert in AI and full-stack development, CodeCrafter87 drives key technological advancements.</p>
-            </div>
-            <!-- Add more team members here -->
+    
+    <!-- Posts Section -->
+    <section id="posts">
+      <h2><i class="fas fa-bullhorn"></i> Announcements &amp; Releases</h2>
+      <div id="postList" class="post-list">
+        <div class="post-item">
+          <div class="post-content">Loading announcements...</div>
         </div>
+      </div>
+      
+      <!-- Admin Controls: Only visible to admin -->
+      <div id="adminControls" class="admin-controls" style="display: none;">
+        <h3><i class="fas fa-cogs"></i> Admin Dashboard</h3>
+        <p>Create new announcements or code releases here.</p>
+        <button onclick="openNewPostModal()"><i class="fas fa-plus"></i> Create New Post</button>
+      </div>
     </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="features">
-            <div class="feature-box">
-                <h3>AI-Powered Chat Servers</h3>
-                <p>Build real-time, secure chat applications tailored to your needs.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Custom AI Solutions</h3>
-                <p>We design and implement advanced AI tools for enhanced business efficiency.</p>
-            </div>
-            <!-- Add more services here -->
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 Doulet Media. All Rights Reserved.</p>
+    <p><a href="#" onclick="openTermsModal()"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</a> | <a href="#" onclick="openPrivacyModal()"><i class="fas fa-shield-alt"></i> Privacy Policy</a></p>
+  </footer>
+  
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+      <div class="form-group">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password">
+      </div>
+      <div class="form-actions">
+        <button onclick="login()" id="loginSubmitBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button onclick="closeModal('loginModal')" class="secondary">Cancel</button>
+      </div>
+      <p style="text-align: center; margin-top: 15px;">
+        Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a>
+      </p>
+    </div>
+  </div>
+  
+  <!-- Register Modal -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('registerModal')">&times;</span>
+      <h3><i class="fas fa-user-plus"></i> Register</h3>
+      <div class="form-group">
+        <label for="regEmail">Email:</label>
+        <input type="email" id="regEmail" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Password:</label>
+        <input type="password" id="regPassword" placeholder="Choose a password (min 6 chars)">
+      </div>
+      <div class="form-group">
+        <label for="regConfirmPassword">Confirm Password:</label>
+        <input type="password" id="regConfirmPassword" placeholder="Confirm your password">
+      </div>
+      <div class="form-actions">
+        <button onclick="register()" id="registerSubmitBtn"><i class="fas fa-user-plus"></i> Register</button>
+        <button onclick="closeModal('registerModal')" class="secondary">Cancel</button>
+      </div>
+      <p style="text-align: center; margin-top: 15px;">
+        Already have an account? <a href="#" onclick="switchToLogin()">Login here</a>
+      </p>
+    </div>
+  </div>
+  
+  <!-- New Post Modal (Admin Only) -->
+  <div id="newPostModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('newPostModal')">&times;</span>
+      <h3><i class="fas fa-plus"></i> New Post</h3>
+      <div class="form-group">
+        <label for="newPostType">Post Type:</label>
+        <select id="newPostType" onchange="toggleNewPostReleaseFields()">
+          <option value="Announcement">Announcement</option>
+          <option value="Release">Release</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="newPostTitle">Title:</label>
+        <input type="text" id="newPostTitle" placeholder="Enter title">
+      </div>
+      <div class="form-group">
+        <label for="newPostContent">Content:</label>
+        <textarea id="newPostContent" rows="5" placeholder="Enter content (Markdown supported)"></textarea>
+      </div>
+      <!-- Additional fields for release posts -->
+      <div id="newReleaseFields" style="display:none;">
+        <div class="form-group">
+          <label for="newReleaseVersion">Version:</label>
+          <input type="text" id="newReleaseVersion" placeholder="e.g., 1.0.0">
         </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <h2>Our Portfolio</h2>
-        <p>Some of our key projects include:</p>
+        <div class="form-group">
+          <label for="newReleaseCodeName">Code Name:</label>
+          <input type="text" id="newReleaseCodeName" placeholder="e.g., Quantum Leap">
+        </div>
+        <div class="form-group">
+          <label for="newReleaseLink">Release Link:</label>
+          <input type="url" id="newReleaseLink" placeholder="https://github.com/your-repo/release">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button onclick="publishNewPost()" id="publishPostBtn"><i class="fas fa-paper-plane"></i> Publish</button>
+        <button onclick="closeModal('newPostModal')" class="secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Terms and Conditions Modal -->
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('termsModal')">&times;</span>
+      <h3><i class="fas fa-file-contract"></i> Terms &amp; Conditions</h3>
+      <div class="terms-content">
+        <h4>1. Acceptance of Terms</h4>
+        <p>By accessing and using the Doulet Media website, you accept and agree to be bound by these Terms and Conditions.</p>
+        
+        <h4>2. User Responsibilities</h4>
         <ul>
-            <li><strong>Chat Server:</strong> A scalable platform powering real-time communication.</li>
-            <li><strong>AI Models:</strong> Advanced AI tools driving business success.</li>
+          <li>You agree to use the website only for lawful purposes.</li>
+          <li>You must not attempt to gain unauthorized access to any part of the website.</li>
+          <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
         </ul>
-        <p>Explore our <a href="https://github.com/changcheng967/Chat-Server" target="_blank">GitHub repositories</a> for more.</p>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews">
-        <h2>Client Testimonials</h2>
-        <div class="review">
-            <p>"Doulet Media exceeded our expectations with their innovative solutions!"</p>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <cite>- Client Name</cite>
-        </div>
-        <!-- Add more reviews here -->
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <h3>What services does Doulet Media provide?</h3>
-            <p>We specialize in AI solutions, custom chat servers, digital marketing, and web development.</p>
-        </div>
-        <!-- Add more FAQs here -->
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form action="/submit-contact" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Doulet Media. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/changcheng967" target="_blank">GitHub</a> |
-            <a href="https://discord.gg/KwJUtfbTva" target="_blank">Discord Server</a>
-        </div>
-    </footer>
+        
+        <h4>3. Intellectual Property</h4>
+        <p>All content on this website, including code releases, documentation, and announcements, is the property of Doulet Media and protected by intellectual property laws.</p>
+        
+        <h4>4. Privacy</h4>
+        <p>Your privacy is important to us. Please review our <a href="#" onclick="openPrivacyModal()">Privacy Policy</a> to understand how we collect and use your information.</p>
+        
+        <h4>5. Limitation of Liability</h4>
+        <p>Doulet Media shall not be liable for any indirect, incidental, or consequential damages resulting from the use of this website or its content.</p>
+        
+        <h4>6. Changes to Terms</h4>
+        <p>We reserve the right to modify these terms at any time. Your continued use of the website constitutes acceptance of the modified terms.</p>
+      </div>
+      <div class="form-actions">
+        <button onclick="closeModal('termsModal')">Close</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Privacy Policy Modal -->
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('privacyModal')">&times;</span>
+      <h3><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
+      <div class="terms-content">
+        <h4>1. Information Collection</h4>
+        <p>We collect personal information when you register an account, including your email address and password (hashed).</p>
+        
+        <h4>2. Use of Information</h4>
+        <p>Your information is used to:</p>
+        <ul>
+          <li>Provide and maintain our service</li>
+          <li>Notify you about changes to our service</li>
+          <li>Allow you to participate in interactive features</li>
+          <li>Provide customer support</li>
+        </ul>
+        
+        <h4>3. Data Security</h4>
+        <p>We implement appropriate security measures to protect your personal information. However, no internet transmission is 100% secure.</p>
+        
+        <h4>4. Cookies</h4>
+        <p>We use cookies to improve your experience on our website. You can set your browser to refuse all or some cookies.</p>
+        
+        <h4>5. Third-Party Services</h4>
+        <p>We use Supabase for authentication and data storage. Review their privacy policy for information on how they handle data.</p>
+        
+        <h4>6. Changes to This Policy</h4>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+      </div>
+      <div class="form-actions">
+        <button onclick="closeModal('privacyModal')">Close</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Notification Toast -->
+  <div id="toast" class="toast">
+    <i id="toastIcon"></i>
+    <span id="toastMessage"></span>
+  </div>
+  
+  <script>
+    // Global state
+    let currentUser = null;
+    const API_BASE = window.location.origin;
+    
+    /*---------------------------------------------
+      Authentication Functions
+    ---------------------------------------------*/
+    async function checkAuthState() {
+      try {
+        const response = await fetch(`${API_BASE}/api/auth/session`);
+        const { user } = await response.json();
+        
+        if (user) {
+          currentUser = {
+            id: user.id,
+            email: user.email,
+            isAdmin: await checkAdminStatus(user.id)
+          };
+          showToast('Welcome back!', 'success');
+        } else {
+          currentUser = null;
+        }
+      } catch (error) {
+        console.error('Session check error:', error);
+        currentUser = null;
+      }
+      
+      showUserStatus();
+      loadPosts();
+    }
+    
+    async function checkAdminStatus(userId) {
+      try {
+        const response = await fetch(`${API_BASE}/api/auth/admin-check`, {
+          headers: {
+            'Authorization': `Bearer ${await getSessionToken()}`
+          }
+        });
+        const { isAdmin } = await response.json();
+        return isAdmin;
+      } catch (error) {
+        console.error('Admin check error:', error);
+        return false;
+      }
+    }
+    
+    async function getSessionToken() {
+      // This would be set after login from the response
+      return localStorage.getItem('supabase_token');
+    }
+    
+    async function login() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+      
+      if (!email || !password) {
+        showToast('Please enter both email and password', 'error');
+        return;
+      }
+      
+      const loginBtn = document.getElementById('loginSubmitBtn');
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<span class="spinner"></span> Logging in...';
+      
+      try {
+        const response = await fetch(`${API_BASE}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const { data, error } = await response.json();
+        
+        if (error) throw new Error(error.message);
+        
+        currentUser = {
+          id: data.user.id,
+          email: data.user.email,
+          isAdmin: await checkAdminStatus(data.user.id)
+        };
+        
+        // Store the session token
+        localStorage.setItem('supabase_token', data.session.access_token);
+        
+        showToast('Login successful!', 'success');
+        closeModal('loginModal');
+        showUserStatus();
+        loadPosts();
+      } catch (error) {
+        console.error('Login error:', error);
+        showToast(error.message || 'Login failed', 'error');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+      }
+    }
+    
+    async function register() {
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value.trim();
+      const confirmPassword = document.getElementById('regConfirmPassword').value.trim();
+      
+      if (!email || !password || !confirmPassword) {
+        showToast('Please fill all fields', 'error');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        showToast('Passwords do not match', 'error');
+        return;
+      }
+      
+      if (password.length < 6) {
+        showToast('Password must be at least 6 characters', 'error');
+        return;
+      }
+      
+      const registerBtn = document.getElementById('registerSubmitBtn');
+      registerBtn.disabled = true;
+      registerBtn.innerHTML = '<span class="spinner"></span> Registering...';
+      
+      try {
+        const response = await fetch(`${API_BASE}/api/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const { data, error } = await response.json();
+        
+        if (error) throw new Error(error.message);
+        
+        showToast('Registration successful! Please check your email to confirm your account.', 'success');
+        closeModal('registerModal');
+      } catch (error) {
+        console.error('Registration error:', error);
+        showToast(error.message || 'Registration failed', 'error');
+      } finally {
+        registerBtn.disabled = false;
+        registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> Register';
+      }
+    }
+    
+    async function logout() {
+      try {
+        const response = await fetch(`${API_BASE}/api/auth/logout`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${await getSessionToken()}`
+          }
+        });
+        
+        if (!response.ok) throw new Error('Logout failed');
+        
+        localStorage.removeItem('supabase_token');
+        currentUser = null;
+        showToast('Logged out successfully', 'success');
+        showUserStatus();
+        loadPosts();
+      } catch (error) {
+        console.error('Logout error:', error);
+        showToast(error.message || 'Logout failed', 'error');
+      }
+    }
+    
+    /*---------------------------------------------
+      Post Management Functions
+    ---------------------------------------------*/
+    async function loadPosts() {
+      const postList = document.getElementById('postList');
+      postList.innerHTML = '<div class="post-item"><div class="post-content">Loading announcements...</div></div>';
+      
+      try {
+        const url = currentUser?.isAdmin 
+          ? `${API_BASE}/api/posts` 
+          : `${API_BASE}/api/posts?published=true`;
+          
+        const response = await fetch(url, {
+          headers: {
+            'Authorization': `Bearer ${await getSessionToken()}`
+          }
+        });
+        
+        const { data: posts, error } = await response.json();
+        
+        if (error) throw new Error(error.message);
+        
+        postList.innerHTML = '';
+        
+        if (!posts || posts.length === 0) {
+          postList.innerHTML = `
+            <div class="post-item">
+              <div class="post-content">No posts yet. Check back later!</div>
+            </div>
+          `;
+          return;
+        }
+        
+        posts.forEach(post => {
+          // ... rest of your post rendering logic remains the same ...
+          // (Keep all your existing post HTML generation code)
+        });
+      } catch (error) {
+        console.error('Error loading posts:', error);
+        postList.innerHTML = `
+          <div class="post-item">
+            <div class="post-content">Error loading posts. Please refresh the page.</div>
+          </div>
+        `;
+      }
+    }
+    
+    async function publishNewPost() {
+      const type = document.getElementById('newPostType').value;
+      const title = document.getElementById('newPostTitle').value.trim();
+      const content = document.getElementById('newPostContent').value.trim();
+      
+      if (!title || !content) {
+        showToast('Please enter both title and content', 'error');
+        return;
+      }
+      
+      const postData = {
+        type,
+        title,
+        content,
+        published: true
+      };
+      
+      if (type === 'Release') {
+        postData.version = document.getElementById('newReleaseVersion').value.trim();
+        postData.code_name = document.getElementById('newReleaseCodeName').value.trim();
+        postData.release_link = document.getElementById('newReleaseLink').value.trim();
+        
+        if (!postData.version || !postData.code_name || !postData.release_link) {
+          showToast('For a Release, please fill in all fields', 'error');
+          return;
+        }
+      }
+      
+      const publishBtn = document.getElementById('publishPostBtn');
+      publishBtn.disabled = true;
+      publishBtn.innerHTML = '<span class="spinner"></span> Publishing...';
+      
+      try {
+        const response = await fetch(`${API_BASE}/api/posts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${await getSessionToken()}`
+          },
+          body: JSON.stringify(postData)
+        });
+        
+        const { data, error } = await response.json();
+        
+        if (error) throw new Error(error.message);
+        
+        showToast('Post published successfully!', 'success');
+        closeModal('newPostModal');
+        
+        // Clear the form
+        document.getElementById('newPostTitle').value = '';
+        document.getElementById('newPostContent').value = '';
+        document.getElementById('newReleaseVersion').value = '';
+        document.getElementById('newReleaseCodeName').value = '';
+        document.getElementById('newReleaseLink').value = '';
+        
+        // Refresh the posts list
+        loadPosts();
+      } catch (error) {
+        console.error('Error creating post:', error);
+        showToast(error.message || 'Failed to create post', 'error');
+      } finally {
+        publishBtn.disabled = false;
+        publishBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish';
+      }
+    }
+    
+    async function editPost(postId) {
+      // In a full implementation, this would open an edit modal
+      // For now, we'll just show a message
+      showToast('Edit functionality coming soon!', 'success');
+    }
+    
+    async function deletePost(postId) {
+      if (!confirm('Are you sure you want to delete this post?')) return;
+      
+      try {
+        const { error } = await supabase
+          .from('posts')
+          .delete()
+          .eq('id', postId);
+        
+        if (error) throw error;
+        
+        showToast('Post deleted successfully', 'success');
+        loadPosts();
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        showToast('Failed to delete post', 'error');
+      }
+    }
+    
+    /*---------------------------------------------
+      Modal Functions
+    ---------------------------------------------*/
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+    
+    function openLoginModal() {
+      openModal('loginModal');
+    }
+    
+    function openRegisterModal() {
+      openModal('registerModal');
+    }
+    
+    function openNewPostModal() {
+      if (!currentUser?.isAdmin) {
+        showToast('Only admin can create new posts', 'error');
+        return;
+      }
+      openModal('newPostModal');
+    }
+    
+    function openTermsModal() {
+      openModal('termsModal');
+    }
+    
+    function openPrivacyModal() {
+      openModal('privacyModal');
+    }
+    
+    function switchToRegister() {
+      closeModal('loginModal');
+      openModal('registerModal');
+    }
+    
+    function switchToLogin() {
+      closeModal('registerModal');
+      openModal('loginModal');
+    }
+    
+    function toggleNewPostReleaseFields() {
+      const newPostType = document.getElementById('newPostType').value;
+      document.getElementById('newReleaseFields').style.display = 
+        (newPostType === 'Release') ? 'block' : 'none';
+    }
+    
+    /*---------------------------------------------
+      Toast Notification
+    ---------------------------------------------*/
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toastIcon');
+      const toastMessage = document.getElementById('toastMessage');
+      
+      // Set icon based on type
+      if (type === 'success') {
+        toastIcon.className = 'fas fa-check-circle';
+      } else if (type === 'error') {
+        toastIcon.className = 'fas fa-exclamation-circle';
+      } else {
+        toastIcon.className = 'fas fa-info-circle';
+      }
+      
+      toastMessage.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.classList.add('show');
+      
+      // Hide after 5 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 5000);
+    }
+    
+   /*---------------------------------------------
+      Initialize App
+    ---------------------------------------------*/
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthState();
+      
+      // Close modals if clicking outside
+      window.onclick = function(event) {
+        const modals = document.getElementsByClassName('modal');
+        for (let modal of modals) {
+          if (event.target === modal) {
+            modal.style.display = 'none';
+          }
+        }
+      };
+      
+      // Allow pressing ESC to close modals
+      document.onkeydown = function(event) {
+        if (event.key === 'Escape') {
+          const modals = document.getElementsByClassName('modal');
+          for (let modal of modals) {
+            if (modal.style.display === 'flex') {
+              modal.style.display = 'none';
+            }
+          }
+        }
+      };
+    });
+  </script>
 </body>
 </html>
