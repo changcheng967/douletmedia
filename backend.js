@@ -1,15 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
+const path = require('path');
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-// Auth endpoints
+// Middleware
+app.use(express.json());
+app.use(express.static(__dirname));
+
+// Auth Endpoints
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -30,25 +31,70 @@ app.post('/api/logout', async (req, res) => {
   res.json({ message: 'Logged out successfully' });
 });
 
-// Posts endpoints
+app.get('/api/auth/session', async (req, res) => {
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error) return res.status(400).json({ error: error.message });
+  res.json({ user });
+});
+
+app.get('/api/auth/admin-check', async (req, res) => {
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error || !user) return res.status(401).json({ error: 'Unauthorized' });
+  
+  // Simple admin check - in production you'd check a proper role
+  const isAdmin = user.email.includes('admin');
+  res.json({ isAdmin });
+});
+
+// Posts Endpoints
 app.get('/api/posts', async (req, res) => {
-  const { data, error } = await supabase.from('posts').select('*').order('created_at', { ascending: false });
+  const { published } = req.query;
+  let query = supabase.from('posts').select('*').order('created_at', { ascending: false });
+  
+  if (published === 'true') query = query.eq('published', true);
+  
+  const { data, error } = await query;
   if (error) return res.status(400).json({ error: error.message });
   res.json(data);
 });
 
 app.post('/api/posts', async (req, res) => {
-  const { user } = await supabase.auth.getUser(req.headers.authorization);
-  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+  // Verify auth
+  const { data: { user }, error: authError } = await supabase.auth.getUser(
+    req.headers.authorization?.split(' ')[1]
+  );
+  if (authError || !user) return res.status(401).json({ error: 'Unauthorized' });
+
+  // Create post
+  const { data, error } = await supabase
+    .from('posts')
+    .insert([{ ...req.body, author: user.email }])
+    .select();
   
-  const postData = req.body;
-  const { data, error } = await supabase.from('posts').insert([{ ...postData, author: user.email }]);
   if (error) return res.status(400).json({ error: error.message });
   res.json(data);
 });
 
-// Serve frontend
-app.use(express.static('public'));
+app.delete('/api/posts/:id', async (req, res) => {
+  // Verify auth
+  const { data: { user }, error: authError } = await supabase.auth.getUser(
+    req.headers.authorization?.split(' ')[1]
+  );
+  if (authError || !user) return res.status(401).json({ error: 'Unauthorized' });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  // Delete post
+  const { error } = await supabase
+    .from('posts')
+    .delete()
+    .eq('id', req.params.id);
+  
+  if (error) return res.status(400).json({ error: error.message });
+  res.json({ message: 'Post deleted successfully' });
+});
+
+// Serve frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+module.exports = app;
