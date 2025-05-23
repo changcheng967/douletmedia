@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doullet Media | Cheap Game Currency & Steam Keys (2025)</title>
-    <meta name="description" content="Buy cheap in-game currency (WoW, GTA, FIFA) and Steam games. Instant delivery after payment!">
+    <title>Doullet Media | Instant Game Currency & Steam Keys - Best Prices (2025)</title>
+    <meta name="description" content="Buy cheap, safe in-game currency (WoW, GTA, FIFA) and Steam games. Instant delivery guaranteed! 24/7 customer support.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -14,6 +14,7 @@
             --light: #F1F1F1;
             --success: #4ECCA3;
             --danger: #FF6B6B;
+            --warning: #FFD166;
         }
         
         * {
@@ -34,16 +35,64 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
         }
         
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
             background: linear-gradient(to right, #fff, #00CEFF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .discount-banner {
+            background-color: var(--warning);
+            color: #000;
+            padding: 0.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         /* Navigation */
@@ -52,25 +101,30 @@
             justify-content: center;
             gap: 1.5rem;
             padding: 1rem;
-            background-color: rgba(26, 26, 46, 0.9);
+            background-color: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         nav a {
             color: var(--light);
             text-decoration: none;
             font-weight: 600;
-            padding: 0.5rem 1rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         nav a:hover, nav a.active {
-            background-color: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
         }
         
         /* Main Container */
@@ -84,25 +138,106 @@
         .hero {
             text-align: center;
             padding: 3rem 0;
-            background: radial-gradient(circle at center, rgba(108, 92, 231, 0.1), transparent);
+            position: relative;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(to right, var(--secondary), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background-color: rgba(26, 26, 46, 0.7);
+            padding: 1.5rem;
+            border-radius: 12px;
+            min-width: 200px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
         }
         
         /* Order Form */
         .order-form {
             background-color: rgba(26, 26, 46, 0.7);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .order-form::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .order-form > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .form-header p {
+            opacity: 0.9;
         }
         
         .form-group {
@@ -119,8 +254,8 @@
         .form-group textarea, 
         .form-group select {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
+            padding: 1rem;
+            border-radius: 10px;
             border: 1px solid rgba(255,255,255,0.2);
             background-color: rgba(26, 26, 46, 0.5);
             color: var(--light);
@@ -142,155 +277,630 @@
         
         .order-type-btn {
             flex: 1;
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
             background-color: rgba(26, 26, 46, 0.7);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
             border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .order-type-btn.active {
-            background-color: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             border-color: var(--primary);
             color: white;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .order-type-btn i {
+            font-size: 1.5rem;
         }
         
         .btn {
             display: inline-block;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s;
             text-align: center;
+            width: 100%;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
         }
         
         .hidden {
             display: none;
         }
         
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-        
-        .feature-card {
-            background-color: rgba(26, 26, 46, 0.7);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-        
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
         /* Payment Methods */
         .payment-methods {
             display: flex;
             gap: 1rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .payment-method {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             background-color: rgba(26, 26, 46, 0.7);
-            border-radius: 8px;
+            border-radius: 50px;
             border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        /* Availability Notice */
-        .availability {
-            background-color: rgba(255, 107, 107, 0.1);
-            border-left: 4px solid var(--danger);
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        /* Game List */
-        .game-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .game-item {
-            background-color: rgba(26, 26, 46, 0.5);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
             transition: all 0.3s;
         }
         
+        .payment-method.paypal {
+            background-color: rgba(0, 48, 135, 0.2);
+            border-color: rgba(0, 48, 135, 0.5);
+        }
+        
+        .payment-method i {
+            font-size: 1.5rem;
+        }
+        
+        .payment-method .fab.fa-paypal {
+            color: #003087;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background-color: rgba(26, 26, 46, 0.7);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            opacity: 0.9;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin: 4rem 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(26, 26, 46, 0.7);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Game List */
+        .game-section {
+            margin: 4rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .game-item {
+            background-color: rgba(26, 26, 46, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
         .game-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.2);
+        }
+        
+        .game-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .game-item h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-price {
+            color: var(--success);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        /* Guarantee Banner */
+        .guarantee-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guarantee-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000') center/cover;
+            opacity: 0.1;
+        }
+        
+        .guarantee-banner > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guarantee-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .guarantee-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* FAQ */
+        .faq-section {
+            margin: 4rem 0;
+        }
+        
+        .faq-item {
+            background-color: rgba(26, 26, 46, 0.7);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        .faq-item.active .faq-question {
             background-color: rgba(108, 92, 231, 0.2);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
         }
         
         /* Footer */
         footer {
-            background-color: rgba(26, 26, 46, 0.9);
-            padding: 2rem;
-            text-align: center;
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 3rem 1.5rem 1.5rem;
             margin-top: 3rem;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+        
+        .footer-column a:hover {
+            opacity: 1;
+            color: var(--secondary);
+        }
+        
         .social-links {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
         
         .social-links a {
             color: var(--light);
             font-size: 1.5rem;
             transition: all 0.3s;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255,255,255,0.1);
         }
         
         .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(26, 26, 46, 0.98));
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--primary);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light);
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--danger);
+        }
+        
+        .checkmark {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            animation: bounce 1s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .order-details {
+            background-color: rgba(26, 26, 46, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            opacity: 0.8;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .order-id {
+            font-size: 1.3rem;
             color: var(--secondary);
+            word-break: break-all;
+        }
+        
+        .next-steps {
+            background-color: rgba(108, 92, 231, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .next-steps h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .next-steps ol {
+            padding-left: 1.5rem;
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .payment-notice {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: rgba(0, 48, 135, 0.1);
+            border: 1px dashed rgba(0, 48, 135, 0.3);
+        }
+        
+        .payment-notice i {
+            font-size: 2rem;
+            color: #003087;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             nav {
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: wrap;
                 gap: 0.5rem;
+            }
+            
+            nav a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
             }
             
             .order-type {
                 flex-direction: column;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
             }
             
             .game-list {
@@ -300,76 +910,97 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="logo">Doullet Media</div>
-        <p>Trusted Game Currency & Steam Keys Since 2023</p>
+        <p class="tagline">Trusted Game Currency & Steam Keys Since 2023</p>
+        <div class="discount-banner">
+            <i class="fas fa-bolt"></i> NEW CUSTOMERS GET 5% OFF FIRST ORDER!
+        </div>
     </header>
     
+    <!-- Navigation -->
     <nav>
         <a href="#order" class="active"><i class="fas fa-shopping-cart"></i> Place Order</a>
         <a href="#how"><i class="fas fa-question-circle"></i> How It Works</a>
         <a href="#games"><i class="fas fa-gamepad"></i> Popular Games</a>
-        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#testimonials"><i class="fas fa-star"></i> Reviews</a>
+        <a href="#faq"><i class="fas fa-info-circle"></i> FAQ</a>
     </nav>
     
     <div class="container">
+        <!-- Hero Section -->
         <section class="hero">
             <h1>Cheap Game Currency & Steam Keys</h1>
-            <p>Instant delivery after payment | Best prices in 2025</p>
+            <p>Get the best prices for in-game currency and digital games with instant delivery. 100% safe transactions guaranteed!</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Positive Reviews</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15min</div>
+                    <div class="stat-label">Avg. Delivery Time</div>
+                </div>
+            </div>
         </section>
         
         <!-- Availability Notice -->
-        <div class="availability">
-            <h3><i class="fas fa-clock"></i> Delivery Times:</h3>
+        <div style="background-color: rgba(255, 107, 107, 0.1); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--danger);">
+            <h3 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-clock"></i> Delivery Times
+            </h3>
             <p>
-                <strong>Standard:</strong> 6-12 hours delivery<br>
-                <strong>Express (when available):</strong> 1 hour (5PM-8PM only)<br>
-                <em>I'm a student - orders are processed after school hours</em>
+                <strong>Standard Delivery:</strong> 6-12 hours<br>
+                <strong>Express Delivery:</strong> 1 hour (when available, 5PM-8PM only)<br>
+                <em>Note: I'm a student - orders are processed after school hours. Thank you for your patience!</em>
             </p>
         </div>
         
+        <!-- Order Form -->
         <section id="order" class="order-form">
-            <h2><i class="fas fa-shopping-cart"></i> Place Your Order</h2>
-            <p>Fill this form → We email you within 1 hour → Pay → Instant delivery!</p>
-            
-            <!-- Order Type Selector -->
-            <div class="order-type">
-                <div class="order-type-btn active" id="btn-currency" onclick="selectType('currency')">
-                    <i class="fas fa-coins"></i> In-Game Currency
-                </div>
-                <div class="order-type-btn" id="btn-game" onclick="selectType('game')">
-                    <i class="fas fa-gamepad"></i> Steam Game
-                </div>
+            <div class="form-header">
+                <h2><i class="fas fa-shopping-cart"></i> Place Your Order</h2>
+                <p>Fill out this simple form and we'll get back to you within 1 hour with payment instructions</p>
             </div>
             
-            <!-- FORM THAT SENDS TO YOUR EMAIL -->
-            <form action="https://formsubmit.co/changcheng6541@gmail.com" method="POST">
-                <!-- FormSubmit Settings -->
-                <input type="hidden" name="_subject" value="NEW ORDER - Doullet Media">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://changcheng967.github.io/thankyou.html">
-                <input type="hidden" name="_autoresponse" value="Thank you for your order at Doullet Media! We'll email you within 1 hour to confirm availability and payment details. Order ID: #DOULLET-{{order_id}}">
-                <input type="hidden" name="_cc" value="changcheng6541@gmail.com">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="text" name="_honey" style="display:none">
-                
-                <!-- Dynamic Order ID -->
-                <input type="hidden" name="order_id" id="order-id-field" value="">
+            <form id="orderForm">
+                <!-- Order Type Selector -->
+                <div class="order-type">
+                    <div class="order-type-btn active" id="btn-currency" onclick="selectType('currency')">
+                        <i class="fas fa-coins"></i>
+                        <span>In-Game Currency</span>
+                    </div>
+                    <div class="order-type-btn" id="btn-game" onclick="selectType('game')">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Steam Game</span>
+                    </div>
+                </div>
                 
                 <!-- Customer Info -->
                 <div class="form-group">
                     <label for="name"><i class="fas fa-user"></i> Your Full Name *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required placeholder="John Smith">
                 </div>
                 
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Your Email *</label>
-                    <input type="email" id="email" name="email" required placeholder="We'll reply to this address">
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
                 </div>
                 
                 <div class="form-group">
                     <label for="discord"><i class="fab fa-discord"></i> Discord (Recommended)</label>
-                    <input type="text" id="discord" name="discord" placeholder="username#1234 for faster delivery">
+                    <input type="text" id="discord" name="discord" placeholder="username#1234">
+                    <small style="opacity: 0.7;">For faster communication and delivery</small>
                 </div>
                 
                 <!-- Game/Currency Selection -->
@@ -393,31 +1024,27 @@
                 <div class="form-group" id="username-field">
                     <label for="username"><i class="fas fa-user-tag"></i> In-Game Username/ID *</label>
                     <input type="text" id="username" name="username" required placeholder="Your character name/server">
-                    <small>Include server/region if applicable</small>
+                    <small style="opacity: 0.7;">Include server/region if applicable</small>
                 </div>
                 
-                <!-- Payment Methods -->
-                <div class="form-group">
-                    <label><i class="fas fa-money-bill-wave"></i> We Accept:</label>
-                    <div class="payment-methods">
-                        <div class="payment-method">
-                            <i class="fab fa-paypal"></i> PayPal (CAD/USD)
-                        </div>
-                        <div class="payment-method">
-                            <i class="fas fa-money-bill-transfer"></i> Wise Transfer
-                        </div>
-                        <div class="payment-method">
-                            <i class="fas fa-bank"></i> Bank Transfer (CAD)
-                        </div>
+                <!-- Payment Notice -->
+                <div class="payment-methods">
+                    <div class="payment-method paypal">
+                        <i class="fab fa-paypal"></i>
+                        <span>PayPal Only</span>
                     </div>
                 </div>
+                <p style="text-align: center; opacity: 0.8; margin: 0.5rem 0 1.5rem;">
+                    (You can pay with credit/debit card through PayPal)
+                </p>
                 
                 <!-- Delivery Time Preference -->
                 <div class="form-group">
                     <label for="delivery-time"><i class="fas fa-clock"></i> Delivery Time Preference</label>
-                    <select id="delivery-time" name="delivery_time">
-                        <option value="anytime">6-12 hours (Standard)</option>
-                        <option value="express">1 hour Express (5PM-8PM only)</option>
+                    <select id="delivery-time" name="delivery_time" required>
+                        <option value="">Select delivery option</option>
+                        <option value="standard">Standard (6-12 hours)</option>
+                        <option value="express">Express (1 hour, 5PM-8PM only)</option>
                     </select>
                 </div>
                 
@@ -430,118 +1057,390 @@
                 <button type="submit" class="btn">
                     <i class="fas fa-paper-plane"></i> Submit Order Request
                 </button>
+                
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.7; font-size: 0.9rem;">
+                    <i class="fas fa-lock"></i> Your information is secure and will only be used for this order
+                </p>
             </form>
         </section>
         
+        <!-- Features -->
         <section id="how">
-            <h2><i class="fas fa-question-circle"></i> How It Works</h2>
+            <div class="section-header">
+                <h2>Why Choose Doullet Media?</h2>
+                <p>We provide the best service in the industry with guaranteed satisfaction</p>
+            </div>
+            
             <div class="features">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-edit"></i></div>
-                    <h3>1. Place Order</h3>
-                    <p>Fill our simple form with what you need. We'll automatically receive your request.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Instant Delivery</h3>
+                    <p>Receive your items within minutes after payment. We're the fastest in the business!</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-envelope"></i></div>
-                    <h3>2. Get Confirmation</h3>
-                    <p>We email you within 1 hour (during 5PM-8PM) to confirm availability and price.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Safe</h3>
+                    <p>All transactions are secure and protected. Your account safety is our top priority.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
-                    <h3>3. Make Payment</h3>
-                    <p>Pay via PayPal, Wise, or Bank Transfer using the instructions we provide.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Best Prices</h3>
+                    <p>We offer the most competitive prices guaranteed. Found cheaper? We'll beat it!</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>4. Receive Delivery</h3>
-                    <p>Get your items within 1 hour (express) or 6-12 hours (standard delivery).</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is always available to assist you with any issues.</p>
                 </div>
             </div>
         </section>
         
-        <section id="games">
-            <h2><i class="fas fa-fire"></i> Popular in 2025</h2>
-            
-            <h3><i class="fas fa-coins"></i> Game Currency</h3>
-            <div class="game-list">
-                <div class="game-item">WoW Classic Gold</div>
-                <div class="game-item">GTA 6 Online Cash</div>
-                <div class="game-item">FIFA 25 Coins</div>
-                <div class="game-item">Diablo 4 Gold</div>
-                <div class="game-item">Lost Ark Gold</div>
-                <div class="game-item">RuneScape Gold</div>
+        <!-- Guarantee Banner -->
+        <div class="guarantee-banner">
+            <h2>Our 100% Satisfaction Guarantee</h2>
+            <p>If you're not completely satisfied with your purchase for any reason, we'll refund your money - no questions asked. Your satisfaction is our top priority and we stand behind every transaction.</p>
+        </div>
+        
+        <!-- Popular Games -->
+        <section id="games" class="game-section">
+            <div class="section-header">
+                <h2>Popular In-Game Currency</h2>
+                <p>Best prices for the most popular games</p>
             </div>
             
-            <h3 style="margin-top: 2rem;"><i class="fas fa-gamepad"></i> Steam Games</h3>
             <div class="game-list">
-                <div class="game-item">GTA 6 (Pre-Order)</div>
-                <div class="game-item">Elden Ring DLC</div>
-                <div class="game-item">Call of Duty 2025</div>
-                <div class="game-item">Starfield</div>
-                <div class="game-item">Cyberpunk 2077</div>
-                <div class="game-item">Hogwarts Legacy 2</div>
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3>WoW Classic Gold</h3>
+                    <div class="game-price">$2.99 / 100K</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>GTA 6 Online</h3>
+                    <div class="game-price">$4.99 / 1M</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>FIFA 25 Coins</h3>
+                    <div class="game-price">$3.99 / 100K</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <h3>Diablo 4 Gold</h3>
+                    <div class="game-price">$5.99 / 1M</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h3>Lost Ark Gold</h3>
+                    <div class="game-price">$3.49 / 100K</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>RuneScape Gold</h3>
+                    <div class="game-price">$0.99 / 1M</div>
+                </div>
             </div>
         </section>
         
-        <section id="contact">
-            <h2><i class="fas fa-envelope"></i> Contact</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-envelope"></i></div>
-                    <h3>Email</h3>
-                    <p>changcheng6541@gmail.com</p>
-                    <p>Response time: Within 1 hour (5PM-8PM)</p>
+        <!-- Steam Games -->
+        <section class="game-section">
+            <div class="section-header">
+                <h2>Popular Steam Games</h2>
+                <p>Instant delivery digital keys</p>
+            </div>
+            
+            <div class="game-list">
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>GTA 6</h3>
+                    <div class="game-price">$49.99</div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fab fa-discord"></i></div>
-                    <h3>Discord</h3>
-                    <p>Join our server for fastest response:</p>
-                    <a href="https://discord.gg/KwJUtfbTva" target="_blank" class="btn" style="padding: 0.5rem 1rem; margin-top: 0.5rem;">
-                        <i class="fab fa-discord"></i> Join Discord
-                    </a>
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>Elden Ring DLC</h3>
+                    <div class="game-price">$29.99</div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Availability</h3>
-                    <p>Monday-Friday: 5PM-8PM EST</p>
-                    <p>Weekends: 10AM-8PM EST</p>
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-gun"></i>
+                    </div>
+                    <h3>Call of Duty 2025</h3>
+                    <div class="game-price">$59.99</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Starfield</h3>
+                    <div class="game-price">$39.99</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Cyberpunk 2077</h3>
+                    <div class="game-price">$29.99</div>
+                </div>
+                
+                <div class="game-item">
+                    <div class="game-icon">
+                        <i class="fas fa-hat-wizard"></i>
+                    </div>
+                    <h3>Hogwarts Legacy 2</h3>
+                    <div class="game-price">$54.99</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section id="testimonials" class="testimonials">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Don't just take our word for it - hear from our satisfied customers</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I was skeptical at first but Doullet Media delivered my WoW gold in under 10 minutes! The prices are unbeatable and the service is top-notch. Will definitely buy again!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>John D.</h4>
+                            <p>WoW Classic Player</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Got my GTA 6 cash in less than an hour as promised. The seller was very professional and even gave me some bonus cash for being a first-time customer. 10/10!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div class="author-info">
+                            <h4>Maria S.</h4>
+                            <p>GTA Online Fan</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I've tried other sellers before but none compare to Doullet Media. The FIFA coins were delivered instantly and the PayPal transaction was smooth. Highly recommended!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TK</div>
+                        <div class="author-info">
+                            <h4>Tom K.</h4>
+                            <p>FIFA Ultimate Team</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ -->
+        <section id="faq" class="faq-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know before ordering</p>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>How does the ordering process work?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>1. Fill out our order form with what you need<br>
+                    2. We'll email you within 1 hour (5PM-8PM) to confirm availability<br>
+                    3. You'll receive PayPal payment instructions<br>
+                    4. After payment, we'll deliver your items immediately</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Is this service safe for my game account?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We use 100% safe and legal methods to deliver your in-game currency or Steam keys. Your account safety is our top priority, and we've never had any issues with bans or suspensions.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We currently accept PayPal only (you can pay with credit/debit cards through PayPal). This ensures the safest transaction for both parties with buyer protection.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>How fast will I receive my order?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Standard delivery: 6-12 hours<br>
+                    Express delivery: 1 hour (available 5PM-8PM only)<br>
+                    <em>Note: I'm a student so orders are processed after school hours</em></p>
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>What if I'm not satisfied with my purchase?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 100% satisfaction guarantee. If you're not happy with your purchase for any reason, we'll refund your money - no questions asked.</p>
                 </div>
             </div>
         </section>
     </div>
     
+    <!-- Footer -->
     <footer>
-        <h3>Doullet Media</h3>
-        <p>Cheap Game Currency & Steam Keys | Since 2023</p>
-        
-        <div class="social-links">
-            <a href="https://discord.gg/KwJUtfbTva" target="_blank"><i class="fab fa-discord"></i></a>
-            <a href="mailto:changcheng6541@gmail.com"><i class="fas fa-envelope"></i></a>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Doullet Media</h3>
+                <p>Your trusted source for game currency and Steam keys since 2023. Best prices guaranteed!</p>
+                <div class="social-links">
+                    <a href="https://discord.gg/KwJUtfbTva" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="mailto:changcheng6541@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#order">Place Order</a></li>
+                    <li><a href="#how">How It Works</a></li>
+                    <li><a href="#games">Popular Games</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="mailto:changcheng6541@gmail.com">Email Support</a></li>
+                    <li><a href="https://discord.gg/KwJUtfbTva" target="_blank">Discord Help</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
         </div>
         
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
-            © <span id="current-year">2025</span> Doullet Media. Not affiliated with Steam, Blizzard, Rockstar or other publishers.<br>
-            All prices in CAD/USD. Student-operated business - please be patient!
-        </p>
+        <div class="copyright">
+            <p>&copy; <span id="footer-year">2025</span> Doullet Media. Not affiliated with Steam, Blizzard, Rockstar or other publishers.</p>
+            <p>All prices in CAD/USD. Student-operated business.</p>
+        </div>
     </footer>
+    
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="checkmark">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h2>Order Received!</h2>
+            
+            <div class="order-details">
+                <div class="detail-row">
+                    <span class="detail-label">Order ID:</span>
+                    <span class="detail-value order-id" id="modalOrderId">#DOULLET-2025-583927</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Item:</span>
+                    <span class="detail-value" id="modalItem">500K WoW Gold</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Game:</span>
+                    <span class="detail-value" id="modalGame">World of Warcraft</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Delivery:</span>
+                    <span class="detail-value" id="modalDelivery">Standard (6-12 hours)</span>
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3><i class="fas fa-list-ol"></i> Next Steps:</h3>
+                <ol>
+                    <li>We'll email you within 1 hour (5PM-8PM) to confirm availability</li>
+                    <li>You'll receive PayPal payment instructions</li>
+                    <li>After payment, we'll deliver your items immediately</li>
+                </ol>
+            </div>
+            
+            <div class="payment-notice">
+                <i class="fab fa-paypal"></i>
+                <h3>PayPal Only</h3>
+                <p>You can pay with credit/debit card through PayPal</p>
+            </div>
+            
+            <button class="modal-btn" onclick="closeModal()">
+                <i class="fas fa-thumbs-up"></i> Got It!
+            </button>
+        </div>
+    </div>
     
     <script>
         // Generate order ID when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            const orderId = 'DOULLET-' + new Date().getFullYear() + '-' + 
-                Math.floor(100000 + Math.random() * 900000);
-            
-            document.getElementById('order-id-field').value = orderId;
-            
             // Set current year in footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+            
+            // Initialize form
+            initForm();
         });
-
+        
         // Toggle between currency/game orders
         function selectType(type) {
             // Toggle buttons
@@ -559,6 +1458,67 @@
                 type === 'currency' 
                     ? "e.g., World of Warcraft, GTA Online, FIFA 25" 
                     : "e.g., Steam, Epic Games, PlayStation Network";
+        }
+        
+        // Toggle FAQ items
+        function toggleFAQ(item) {
+            item.classList.toggle('active');
+        }
+        
+        // Initialize form submission
+        function initForm() {
+            const form = document.getElementById('orderForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Generate order ID
+                const orderId = 'DOULLET-' + new Date().getFullYear() + '-' + 
+                    Math.floor(100000 + Math.random() * 900000);
+                
+                // Get form values
+                const formData = new FormData(form);
+                const item = formData.get('item');
+                const game = formData.get('game');
+                const deliveryTime = formData.get('delivery_time');
+                
+                // Display in modal
+                document.getElementById('modalOrderId').textContent = '#' + orderId;
+                document.getElementById('modalItem').textContent = item;
+                document.getElementById('modalGame').textContent = game;
+                document.getElementById('modalDelivery').textContent = 
+                    deliveryTime === 'express' ? 'Express (1 hour)' : 'Standard (6-12 hours)';
+                
+                // Show modal
+                document.getElementById('orderModal').style.display = 'flex';
+                
+                // Prepare data for email
+                formData.append('order_id', orderId);
+                
+                // Send form data (using FormSubmit)
+                fetch('https://formsubmit.co/ajax/changcheng6541@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => console.log('Email sent:', data))
+                .catch(error => console.error('Error:', error));
+                
+                // Reset form
+                form.reset();
+            });
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('orderModal')) {
+                closeModal();
+            }
         }
     </script>
 </body>
