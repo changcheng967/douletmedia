@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Received - Doullet Media</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #00CEFF;
+            --dark: #1A1A2E;
+            --light: #F1F1F1;
+            --success: #4ECCA3;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .checkmark {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .order-box {
+            background-color: rgba(26, 26, 46, 0.7);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .order-id {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin: 1rem 0;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        
+        .delivery-info {
+            background-color: rgba(108, 92, 231, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+        }
+        
+        .next-steps {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+            list-style-type: none;
+        }
+        
+        .next-steps li:before {
+            content: "✓";
+            color: var(--success);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        .contact-methods {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .contact-methods a {
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .contact-methods a:hover {
+            color: var(--secondary);
+            background-color: rgba(0, 206, 255, 0.2);
+        }
+        
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .order-box {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkmark">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <h1>Order Received!</h1>
+        <p>Thank you for choosing Doullet Media</p>
+        
+        <div class="order-box">
+            <p>We've received your request for:</p>
+            <div class="order-id" id="order-id-display">Loading...</div>
+            
+            <div class="delivery-info">
+                <p><i class="fas fa-clock"></i> <strong>Delivery Times:</strong></p>
+                <p>Standard: 6-12 hours<br>
+                Express: 1 hour (5PM-8PM only)</p>
+                <p><em>I'm a student - orders are processed after school hours</em></p>
+            </div>
+            
+            <div class="next-steps">
+                <h3>What happens next?</h3>
+                <ul>
+                    <li>You'll receive a confirmation email within <strong>1 hour</strong> (during 5PM-8PM)</li>
+                    <li>We'll verify availability and send payment instructions</li>
+                    <li>After payment, delivery happens within your selected timeframe</li>
+                    <li>Check your spam folder if you don't see our email</li>
+                </ul>
+            </div>
+            
+            <div class="contact-methods">
+                <a href="https://discord.gg/KwJUtfbTva" target="_blank" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="mailto:changcheng6541@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <a href="https://changcheng967.github.io/douletmedia" class="btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+        
+        <footer>
+            <p>© <span id="current-year">2025</span> Doullet Media | Student-operated business</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Get order details from URL
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate random order ID if none in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let orderId = urlParams.get('order_id');
+            
+            if (!orderId) {
+                orderId = 'DOULLET-' + new Date().getFullYear() + '-' + 
+                    Math.floor(100000 + Math.random() * 900000);
+            }
+            
+            // Display order ID
+            document.getElementById('order-id-display').textContent = '#' + orderId;
+            
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Save order ID to localStorage (for reference if user returns)
+            localStorage.setItem('lastOrderId', orderId);
+        });
+    </script>
+</body>
+</html>
