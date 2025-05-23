@@ -208,6 +208,53 @@
             color: var(--secondary);
         }
         
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(26, 26, 46, 0.7);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Availability Notice */
+        .availability {
+            background-color: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Game List */
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .game-item {
+            background-color: rgba(26, 26, 46, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .game-item:hover {
+            background-color: rgba(108, 92, 231, 0.2);
+        }
+        
         /* Footer */
         footer {
             background-color: rgba(26, 26, 46, 0.9);
@@ -245,6 +292,10 @@
             .order-type {
                 flex-direction: column;
             }
+            
+            .game-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
         }
     </style>
 </head>
@@ -267,6 +318,16 @@
             <p>Instant delivery after payment | Best prices in 2025</p>
         </section>
         
+        <!-- Availability Notice -->
+        <div class="availability">
+            <h3><i class="fas fa-clock"></i> Delivery Times:</h3>
+            <p>
+                <strong>Standard:</strong> 6-12 hours delivery<br>
+                <strong>Express (when available):</strong> 1 hour (5PM-8PM only)<br>
+                <em>I'm a student - orders are processed after school hours</em>
+            </p>
+        </div>
+        
         <section id="order" class="order-form">
             <h2><i class="fas fa-shopping-cart"></i> Place Your Order</h2>
             <p>Fill this form → We email you within 1 hour → Pay → Instant delivery!</p>
@@ -286,9 +347,14 @@
                 <!-- FormSubmit Settings -->
                 <input type="hidden" name="_subject" value="NEW ORDER - Doullet Media">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-                <input type="hidden" name="_autoresponse" value="Thank you for your order at Doullet Media! We'll email you within 1 hour to confirm availability and payment details. Order ID: #DOULLET-2025-{{timestamp}}">
-                <input type="hidden" name="_cc" value="backup-email@example.com">
+                <input type="hidden" name="_next" value="https://changcheng967.github.io/thankyou.html">
+                <input type="hidden" name="_autoresponse" value="Thank you for your order at Doullet Media! We'll email you within 1 hour to confirm availability and payment details. Order ID: #DOULLET-{{order_id}}">
+                <input type="hidden" name="_cc" value="changcheng6541@gmail.com">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" name="_honey" style="display:none">
+                
+                <!-- Dynamic Order ID -->
+                <input type="hidden" name="order_id" id="order-id-field" value="">
                 
                 <!-- Customer Info -->
                 <div class="form-group">
@@ -330,20 +396,35 @@
                     <small>Include server/region if applicable</small>
                 </div>
                 
-                <!-- Payment Method Preference -->
+                <!-- Payment Methods -->
                 <div class="form-group">
-                    <label for="payment"><i class="fas fa-money-bill-wave"></i> Preferred Payment Method</label>
-                    <select id="payment" name="payment">
-                        <option value="">Select payment method</option>
-                        <option value="PayPal">PayPal</option>
-                        <option value="Other">Other</option>
+                    <label><i class="fas fa-money-bill-wave"></i> We Accept:</label>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <i class="fab fa-paypal"></i> PayPal (CAD/USD)
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-money-bill-transfer"></i> Wise Transfer
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-bank"></i> Bank Transfer (CAD)
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Delivery Time Preference -->
+                <div class="form-group">
+                    <label for="delivery-time"><i class="fas fa-clock"></i> Delivery Time Preference</label>
+                    <select id="delivery-time" name="delivery_time">
+                        <option value="anytime">6-12 hours (Standard)</option>
+                        <option value="express">1 hour Express (5PM-8PM only)</option>
                     </select>
                 </div>
                 
                 <!-- Additional Notes -->
                 <div class="form-group">
                     <label for="notes"><i class="fas fa-edit"></i> Special Instructions</label>
-                    <textarea id="notes" name="notes" rows="3" placeholder="Delivery time preference? Any special requests?"></textarea>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Specific time needed? Other requests?"></textarea>
                 </div>
                 
                 <button type="submit" class="btn">
@@ -352,63 +433,89 @@
             </form>
         </section>
         
-        <section id="how" class="features">
-            <h2 style="grid-column: 1/-1; text-align: center; margin-bottom: 1rem;"><i class="fas fa-question-circle"></i> How It Works</h2>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-edit"></i></div>
-                <h3>1. Place Order</h3>
-                <p>Fill out our simple form with what you need. We'll automatically receive your request.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-envelope"></i></div>
-                <h3>2. Get Confirmation</h3>
-                <p>We email you within 1 hour to confirm availability and exact price.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
-                <h3>3. Make Payment</h3>
-                <p>Pay via PayPal, E-Transfer, or other methods we provide in the email.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-                <h3>4. Instant Delivery</h3>
-                <p>Receive your game key or currency within minutes after payment.</p>
-            </div>
-        </section>
-        
-        <section id="games" style="margin: 3rem 0;">
-            <h2><i class="fas fa-fire"></i> Popular in 2025</h2>
+        <section id="how">
+            <h2><i class="fas fa-question-circle"></i> How It Works</h2>
             <div class="features">
                 <div class="feature-card">
-                    <h3><i class="fas fa-coins"></i> Game Currency</h3>
-                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                        <li>World of Warcraft Gold</li>
-                        <li>GTA 6 Online Cash</li>
-                        <li>FIFA 25 Coins</li>
-                        <li>Diablo 4 Gold</li>
-                        <li>Lost Ark Gold</li>
-                    </ul>
+                    <div class="feature-icon"><i class="fas fa-edit"></i></div>
+                    <h3>1. Place Order</h3>
+                    <p>Fill our simple form with what you need. We'll automatically receive your request.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <h3><i class="fas fa-gamepad"></i> Steam Games</h3>
-                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                        <li>GTA 6 (Pre-Order)</li>
-                        <li>Elden Ring: Shadow of the Erdtree</li>
-                        <li>Call of Duty 2025</li>
-                        <li>Starfield: Expansion</li>
-                        <li>Cyberpunk 2077: Orion</li>
-                    </ul>
+                    <div class="feature-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>2. Get Confirmation</h3>
+                    <p>We email you within 1 hour (during 5PM-8PM) to confirm availability and price.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>3. Make Payment</h3>
+                    <p>Pay via PayPal, Wise, or Bank Transfer using the instructions we provide.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>4. Receive Delivery</h3>
+                    <p>Get your items within 1 hour (express) or 6-12 hours (standard delivery).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="games">
+            <h2><i class="fas fa-fire"></i> Popular in 2025</h2>
+            
+            <h3><i class="fas fa-coins"></i> Game Currency</h3>
+            <div class="game-list">
+                <div class="game-item">WoW Classic Gold</div>
+                <div class="game-item">GTA 6 Online Cash</div>
+                <div class="game-item">FIFA 25 Coins</div>
+                <div class="game-item">Diablo 4 Gold</div>
+                <div class="game-item">Lost Ark Gold</div>
+                <div class="game-item">RuneScape Gold</div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;"><i class="fas fa-gamepad"></i> Steam Games</h3>
+            <div class="game-list">
+                <div class="game-item">GTA 6 (Pre-Order)</div>
+                <div class="game-item">Elden Ring DLC</div>
+                <div class="game-item">Call of Duty 2025</div>
+                <div class="game-item">Starfield</div>
+                <div class="game-item">Cyberpunk 2077</div>
+                <div class="game-item">Hogwarts Legacy 2</div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2><i class="fas fa-envelope"></i> Contact</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p>changcheng6541@gmail.com</p>
+                    <p>Response time: Within 1 hour (5PM-8PM)</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fab fa-discord"></i></div>
+                    <h3>Discord</h3>
+                    <p>Join our server for fastest response:</p>
+                    <a href="https://discord.gg/KwJUtfbTva" target="_blank" class="btn" style="padding: 0.5rem 1rem; margin-top: 0.5rem;">
+                        <i class="fab fa-discord"></i> Join Discord
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Availability</h3>
+                    <p>Monday-Friday: 5PM-8PM EST</p>
+                    <p>Weekends: 10AM-8PM EST</p>
                 </div>
             </div>
         </section>
     </div>
     
-    <footer id="contact">
+    <footer>
         <h3>Doullet Media</h3>
         <p>Cheap Game Currency & Steam Keys | Since 2023</p>
         
@@ -418,12 +525,23 @@
         </div>
         
         <p style="margin-top: 1rem; font-size: 0.9rem;">
-            © 2025 Doullet Media. Not affiliated with Steam, Blizzard, Rockstar or other publishers.<br>
-            All prices in CAD. Delivery times may vary.
+            © <span id="current-year">2025</span> Doullet Media. Not affiliated with Steam, Blizzard, Rockstar or other publishers.<br>
+            All prices in CAD/USD. Student-operated business - please be patient!
         </p>
     </footer>
     
     <script>
+        // Generate order ID when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderId = 'DOULLET-' + new Date().getFullYear() + '-' + 
+                Math.floor(100000 + Math.random() * 900000);
+            
+            document.getElementById('order-id-field').value = orderId;
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+
         // Toggle between currency/game orders
         function selectType(type) {
             // Toggle buttons
@@ -442,12 +560,6 @@
                     ? "e.g., World of Warcraft, GTA Online, FIFA 25" 
                     : "e.g., Steam, Epic Games, PlayStation Network";
         }
-        
-        // Set current year in footer
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('footer p').innerHTML = 
-                document.querySelector('footer p').innerHTML.replace('2025', new Date().getFullYear());
-        });
     </script>
 </body>
 </html>
